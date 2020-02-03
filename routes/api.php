@@ -20,5 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('v1/books', 'BookController@index');
 Route::get('v1/books/{book}', 'BookController@show');
 Route::post('v1/books', 'BookController@store')->middleware('auth:api');
-Route::patch('v1/books/{book}', 'BookController@update')->middleware('auth:api');
-Route::delete('v1/books/{book}', 'BookController@destroy')->middleware('auth:api');
+Route::patch('v1/books/{book}', 'BookController@update'); /** ->middleware('auth:api'); */
+Route::delete('v1/books/{book}', 'BookController@destroy'); /**->middleware('auth:api'); */

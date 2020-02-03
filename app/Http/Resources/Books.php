@@ -21,16 +21,17 @@ class Books extends ResourceCollection
     public function toArray($request)
     {
         return
-            [
-                'status_code' => 200,
-                'status' => 'success',
-
-            ] +
+//            [
+//                'status_code' => 200,
+//                'status' => 'success',
+//
+//            ] +
             [
                 'data' =>
                     $this->collection->map(function (Book $book) {
                         return
                             [
+                                'id' => $book->id,
                                 'name' => $book->name,
                                 'isbn' => $book->isbn,
                                 'authors' => [$book->author->name],

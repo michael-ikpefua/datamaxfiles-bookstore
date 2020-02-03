@@ -13,7 +13,7 @@ class BookRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user();
+        return  true; //$this->user();
     }
 
     /**

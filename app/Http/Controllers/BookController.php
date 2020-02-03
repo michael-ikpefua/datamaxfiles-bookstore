@@ -16,7 +16,7 @@ class BookController extends Controller
     {
         $this->model = $model;
 
-        $this->middleware("can:isOwner,book")->only(['update', 'destroy']);
+//        $this->middleware("can:isOwner,book")->only(['update', 'destroy']);
     }
 
     public function index()
@@ -26,9 +26,14 @@ class BookController extends Controller
             ->whereCountry(request('country'))
             ->wherePublisher(request('publisher'))
             ->whereReleaseYear(request('year'))
-            ->with('author')->get();
+            ->with('author')
+            ->paginate(10);
 
-        return new Books($books);
+        return (new Books($books))
+            ->additional([
+                'status_code' => 200,
+                'status' => 'success'
+            ]);
     }
 
     public function store(BookRequest $request)
